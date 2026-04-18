@@ -1,0 +1,36 @@
+export type Profile = {
+  name: string;
+  title: string;
+  tagline: string;
+  subtext: string;
+  email: string;
+  linkedin: string;
+  github: string;
+  website: string;
+  location: string;
+  about: string[];
+  focus: string[];
+};
+
+export const profile: Profile = {
+  name: "Mritunjay Kumar",
+  title: "Mining Research Scholar",
+  tagline: "I build AI-driven tools and research for mining engineering.",
+  subtext: "Mining  ·  Rock Mechanics  ·  AI",
+  email: "krmritunjay769@gmail.com",
+  linkedin: "https://www.linkedin.com/in/mritunjay-kmr",
+  github: "https://github.com/",
+  website: "https://miningtoolkit.in",
+  location: "Surathkal, India",
+  about: [
+    "PhD researcher at NITK Surathkal. Core research focus: underground pillar design and rock mechanics.",
+    "Founder of MiningToolkit, an integrated mining engineering suite covering pillar design, blasting, ventilation, geotechnics, economics, and simulations.",
+    "Broader interests: AI-assisted geotechnical modelling, mining instrumentation, and IoT-enabled data platforms.",
+  ],
+  focus: [
+    "Underground pillar design",
+    "Rock mechanics and stability",
+    "AI-assisted geotechnical modelling",
+    "Mining engineering tooling and simulations",
+  ],
+};

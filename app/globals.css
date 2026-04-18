@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0a0a0a;
+  --bg-soft: #111111;
+  --fg: #ededed;
+  --amber: #f5c542;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-inter), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(245, 197, 66, 0.35);
+  color: #0a0a0a;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f1f1f;
+  border-radius: 8px;
+  border: 2px solid #0a0a0a;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 197, 66, 0.35);
+}
+
+@layer components {
+  .container-rail {
+    @apply mx-auto w-full max-w-6xl px-5 md:px-8;
+  }
+
+  .section-eyebrow {
+    @apply inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.28em] text-amber/80;
+  }
+
+  .section-eyebrow::before {
+    content: "";
+    @apply inline-block h-px w-8 bg-amber/60;
+  }
+
+  .heading-xl {
+    @apply font-display text-4xl font-semibold leading-[1.05] tracking-tight text-white md:text-6xl;
+  }
+
+  .heading-lg {
+    @apply font-display text-3xl font-semibold leading-tight tracking-tight text-white md:text-4xl;
+  }
+
+  .heading-md {
+    @apply font-display text-2xl font-semibold leading-tight tracking-tight text-white md:text-3xl;
+  }
+
+  .prose-dim {
+    @apply text-base leading-relaxed text-neutral-300;
+  }
+
+  .card {
+    @apply rounded-xl border border-white/5 bg-white/[0.02] transition-colors duration-200;
+  }
+
+  .card:hover {
+    @apply border-amber/30;
+  }
+}
+
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(245, 197, 66, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245, 197, 66, 0.05) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse at center, black, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black, transparent 75%);
+}
