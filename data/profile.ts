@@ -1,3 +1,8 @@
+export type ProfileStat = {
+  label: string;
+  value: string;
+};
+
 export type Profile = {
   name: string;
   title: string;
@@ -10,6 +15,8 @@ export type Profile = {
   location: string;
   about: string[];
   focus: string[];
+  /** Short credibility strip for the About section */
+  aboutStats: ProfileStat[];
 };
 
 export const profile: Profile = {
@@ -21,9 +28,9 @@ export const profile: Profile = {
   linkedin: "https://www.linkedin.com/in/mritunjay-kmr",
   github: "https://github.com/",
   website: "https://miningtoolkit.in",
-  location: "Surathkal, India",
+  location: "National Institute of Technology Karnataka, Surathkal, India",
   about: [
-    "PhD researcher at NITK Surathkal. Core research focus: underground pillar design and rock mechanics.",
+    "PhD researcher at the National Institute of Technology Karnataka, Surathkal. Core research focus: underground pillar design and rock mechanics.",
     "Founder of MiningToolkit, an integrated mining engineering suite covering pillar design, blasting, ventilation, geotechnics, economics, and simulations.",
     "Broader interests: AI-assisted geotechnical modelling, mining instrumentation, and IoT-enabled data platforms.",
   ],
@@ -32,5 +39,10 @@ export const profile: Profile = {
     "Rock mechanics and stability",
     "AI-assisted geotechnical modelling",
     "Mining engineering tooling and simulations",
+  ],
+  aboutStats: [
+    { label: "Research core", value: "Pillar + rock mechanics" },
+    { label: "Shipped product", value: "MiningToolkit" },
+    { label: "Base", value: "NIT Karnataka, Surathkal" },
   ],
 };

@@ -8,9 +8,10 @@ const links = [
   { href: "#about", label: "About", n: "01" },
   { href: "#journey", label: "Journey", n: "02" },
   { href: "#research", label: "Research", n: "03" },
-  { href: "#projects", label: "Projects", n: "04" },
-  { href: "#skills", label: "Skills", n: "05" },
-  { href: "#connect", label: "Connect", n: "06" },
+  { href: "#field", label: "Field", n: "04" },
+  { href: "#projects", label: "Projects", n: "05" },
+  { href: "#skills", label: "Skills", n: "06" },
+  { href: "#connect", label: "Connect", n: "07" },
 ];
 
 const socials = [

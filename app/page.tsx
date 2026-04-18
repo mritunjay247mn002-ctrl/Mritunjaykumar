@@ -3,6 +3,7 @@ import Hero from "./components/Hero";
 import About from "./components/About";
 import EducationTimeline from "./components/EducationTimeline";
 import Research from "./components/Research";
+import Consultancy from "./components/Consultancy";
 import Projects from "./components/Projects";
 import Skills from "./components/Skills";
 import LinksHub from "./components/LinksHub";
@@ -16,6 +17,7 @@ export default function HomePage() {
       <About />
       <EducationTimeline />
       <Research />
+      <Consultancy />
       <Projects />
       <Skills />
       <LinksHub />

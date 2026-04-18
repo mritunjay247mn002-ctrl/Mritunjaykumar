@@ -89,6 +89,40 @@ body {
   .card:hover {
     @apply border-amber/30;
   }
+
+  /* Field & Consultancy: SVG engineering diagrams (hover-only, no glow) */
+  .consultancy-viz {
+    @apply block h-full w-full select-none text-neutral-500;
+  }
+
+  .consultancy-viz text {
+    @apply font-mono fill-neutral-500;
+    font-size: 6.5px;
+    letter-spacing: 0.06em;
+  }
+
+  .consultancy-viz .viz-strong {
+    @apply fill-neutral-300;
+  }
+
+  .consultancy-underwater-scale {
+    transform-origin: 0 0;
+    transition: transform 0.45s ease-out;
+  }
+
+  .group:hover .consultancy-underwater-scale {
+    transform: scale(1.05);
+  }
+
+  .consultancy-pillar-core {
+    transform-box: fill-box;
+    transform-origin: center bottom;
+    transition: transform 0.35s ease-out;
+  }
+
+  .group:hover .consultancy-pillar-core {
+    transform: scaleY(0.9);
+  }
 }
 
 .bg-grid {

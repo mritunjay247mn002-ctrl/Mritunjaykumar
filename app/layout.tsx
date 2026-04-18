@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     template: `%s · ${profile.name}`,
   },
   description:
-    "Mritunjay Kumar. Mining research scholar at NITK Surathkal. Research focus on underground pillar design and rock mechanics. Founder of MiningToolkit, an integrated mining engineering suite.",
+    "Mritunjay Kumar. Mining research scholar at the National Institute of Technology Karnataka, Surathkal. Research focus on underground pillar design and rock mechanics. Founder of MiningToolkit, an integrated mining engineering suite.",
   keywords: [
     "Mritunjay Kumar",
     "Mining Engineering",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     "AI in Mining",
     "Rock Mechanics",
     "MiningToolkit",
-    "NITK Surathkal",
+    "National Institute of Technology Karnataka",
   ],
   authors: [{ name: profile.name }],
   creator: profile.name,
