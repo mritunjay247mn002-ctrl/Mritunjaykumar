@@ -226,7 +226,7 @@ function VisualPanel({ item }: { item: ConsultancyItem }) {
             alt="Field or simulation reference (schematic overlay)"
             fill
             className="object-cover opacity-[0.22]"
-            sizes="(min-width: 768px) 50vw, 100vw"
+            sizes="(max-width: 768px) 100vw, 50vw"
             priority={false}
           />
           <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#070707] via-[#070707]/85 to-transparent" />
@@ -241,7 +241,7 @@ function VisualPanel({ item }: { item: ConsultancyItem }) {
 
 export default function Consultancy() {
   return (
-    <section id="field" className="relative py-20 md:py-28">
+    <section id="field" className="relative py-14 md:py-28">
       <div className="container-rail">
         <SectionHeading
           eyebrow="Field & Consultancy"
@@ -249,7 +249,7 @@ export default function Consultancy() {
           lede="Applied engineering across blasting, rock mechanics, and slope stability."
         />
 
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {consultancy.map((item, i) => (
             <motion.article
               key={item.title}
@@ -265,7 +265,7 @@ export default function Consultancy() {
             >
               <VisualPanel item={item} />
 
-              <div className="flex flex-col gap-2 border-t border-neutral-800 p-5 md:p-6">
+              <div className="flex flex-col gap-2 border-t border-neutral-800 p-4 md:p-6">
                 <h3 className="font-display text-lg font-semibold leading-snug tracking-tight text-white md:text-xl">
                   {item.title}
                 </h3>
@@ -310,7 +310,7 @@ export default function Consultancy() {
                   <ul className="divide-y divide-neutral-800">
                     {rows.map((row) => (
                       <li key={`${row.company}-${row.location}`}>
-                        <div className="px-4 py-4 transition-colors duration-150 ease-out hover:bg-white/[0.03] md:px-5 md:py-3.5">
+                        <div className="px-4 py-4 transition-colors duration-150 ease-out active:bg-white/[0.05] md:px-5 md:py-3.5 md:hover:bg-white/[0.03]">
                           <div className="flex flex-col gap-1.5 md:grid md:grid-cols-[minmax(0,10rem)_minmax(0,1fr)_minmax(0,8.5rem)] md:items-baseline md:gap-x-6">
                             <div className="min-w-0 font-mono text-[10px] uppercase leading-snug tracking-[0.2em] text-neutral-500">
                               {row.domain}

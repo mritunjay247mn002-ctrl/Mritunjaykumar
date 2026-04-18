@@ -1,11 +1,12 @@
 import type { MetadataRoute } from "next";
 import { profile } from "@/data/profile";
+import { seoDescription, seoSiteName } from "@/data/seo";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: `${profile.name} — ${profile.title}`,
+    name: seoSiteName,
     short_name: profile.name.split(" ")[0] ?? profile.name,
-    description: profile.tagline,
+    description: seoDescription,
     start_url: "/",
     display: "browser",
     background_color: "#0a0a0a",

@@ -36,10 +36,10 @@ function AboutSlideshowBackground() {
               src={src}
               alt=""
               fill
-              className={`object-cover blur-[3px] transition-opacity duration-[1400ms] ease-out sm:blur-[4px] ${
+              className={`object-cover blur-[2px] transition-opacity duration-[1400ms] ease-out sm:blur-[3px] md:blur-[4px] ${
                 i === index ? "opacity-100" : "opacity-0"
               }`}
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, 50vw"
               priority={i === 0}
               loading={i === 0 ? "eager" : "lazy"}
             />
@@ -56,11 +56,11 @@ function AboutReadabilityScrim() {
     <>
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-black/80 via-black/72 to-black/88"
+        className="pointer-events-none absolute inset-0 z-[1] bg-gradient-to-b from-black/90 via-black/82 to-black/92 md:from-black/80 md:via-black/72 md:to-black/88"
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(to_right,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.55)_42%,rgba(0,0,0,0.62)_100%)]"
+        className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(to_right,rgba(0,0,0,0.88)_0%,rgba(0,0,0,0.68)_45%,rgba(0,0,0,0.72)_100%)] md:bg-[linear-gradient(to_right,rgba(0,0,0,0.78)_0%,rgba(0,0,0,0.55)_42%,rgba(0,0,0,0.62)_100%)]"
       />
     </>
   );
@@ -70,7 +70,7 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative isolate overflow-hidden border-b border-neutral-800/80 py-24 md:py-32"
+      className="relative isolate overflow-hidden border-b border-neutral-800/80 py-16 md:py-32"
     >
       <AboutSlideshowBackground />
       <AboutReadabilityScrim />
@@ -84,7 +84,7 @@ export default function About() {
       />
 
       <div className="container-rail relative z-10">
-        <div className="grid items-start gap-14 lg:grid-cols-12 lg:gap-16">
+        <div className="grid grid-cols-1 items-start gap-10 text-center lg:grid-cols-12 lg:gap-16 lg:text-left">
           <div className="lg:col-span-7">
             <motion.div
               initial={{ opacity: 0, y: 10 }}
@@ -95,14 +95,14 @@ export default function About() {
               <p className="font-mono text-[10px] uppercase tracking-[0.38em] text-amber/90">
                 About
               </p>
-              <h2 className="mt-5 font-display text-[clamp(2rem,5vw,3.75rem)] font-semibold leading-[1.05] tracking-tight text-white">
+              <h2 className="mt-4 font-display text-3xl font-semibold leading-[1.05] tracking-tight text-white sm:text-4xl md:mt-5 md:text-5xl lg:text-[clamp(2.75rem,4vw,3.75rem)]">
                 <span className="text-neutral-400">From strata to </span>
                 <span className="text-amber">systems.</span>
               </h2>
-              <p className="mt-6 max-w-xl font-display text-xl font-medium leading-snug text-neutral-200 md:text-2xl">
+              <p className="mx-auto mt-5 max-w-xl font-display text-base font-medium leading-snug text-neutral-200 sm:text-lg md:mx-0 md:mt-6 md:text-2xl lg:mx-0">
                 {profile.tagline}
               </p>
-              <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.28em] text-neutral-500">
+              <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.28em] text-neutral-500 sm:text-[11px]">
                 {profile.subtext}
               </p>
             </motion.div>
@@ -112,12 +112,12 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.25 }}
               transition={{ duration: 0.45, delay: 0.08, ease: "easeOut" }}
-              className="mt-10 grid grid-cols-3 gap-px rounded-lg border border-white/10 bg-white/10 sm:max-w-xl"
+              className="mx-auto mt-8 grid max-w-xl grid-cols-1 gap-2 rounded-lg border border-white/10 bg-white/10 sm:grid-cols-3 sm:gap-px sm:p-0 md:mx-0 md:mt-10"
             >
               {profile.aboutStats.map((s) => (
                 <div
                   key={s.label}
-                  className="bg-[#0a0a0a]/95 px-3 py-4 text-center sm:px-4 sm:py-5"
+                  className="min-h-[44px] bg-[#0a0a0a]/95 px-4 py-3 text-center sm:min-h-0 sm:px-4 sm:py-5"
                 >
                   <div className="font-mono text-[9px] uppercase tracking-[0.22em] text-neutral-500">
                     {s.label}
@@ -129,7 +129,7 @@ export default function About() {
               ))}
             </motion.div>
 
-            <div className="mt-12 space-y-5 border-l border-amber/25 pl-6 md:mt-14 md:space-y-6 md:pl-8">
+            <div className="mt-10 space-y-4 border-amber/25 pl-0 md:mt-14 md:space-y-6 md:border-l md:pl-8">
               {profile.about.map((p, i) => (
                 <motion.p
                   key={i}
@@ -143,8 +143,8 @@ export default function About() {
                   }}
                   className={
                     i === 0
-                      ? "text-base leading-relaxed text-neutral-100 md:text-lg"
-                      : "prose-dim text-[15px] md:text-base"
+                      ? "text-base leading-relaxed text-neutral-100 sm:text-lg md:text-lg"
+                      : "prose-dim text-[15px] sm:text-base md:text-base"
                   }
                 >
                   {p}
@@ -161,7 +161,7 @@ export default function About() {
             className="lg:col-span-5"
           >
             <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-white/[0.06] via-white/[0.02] to-transparent p-px shadow-[0_0_0_1px_rgba(255,255,255,0.04)_inset]">
-              <div className="rounded-2xl bg-[#080808]/95 p-6 md:p-8">
+              <div className="rounded-2xl bg-[#080808]/95 p-4 md:p-8">
                 <div className="flex items-end justify-between gap-4">
                   <div>
                     <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-neutral-500">
@@ -176,7 +176,7 @@ export default function About() {
                   </span>
                 </div>
 
-                <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+                <ul className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 md:mt-8">
                   {profile.focus.map((f, i) => (
                     <motion.li
                       key={f}
@@ -188,8 +188,7 @@ export default function About() {
                         delay: 0.12 + i * 0.05,
                         ease: "easeOut",
                       }}
-                      whileHover={{ y: -2 }}
-                      className="group rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3.5 transition-colors duration-200 hover:border-amber/35 hover:bg-white/[0.05]"
+                      className="group rounded-xl border border-white/10 bg-white/[0.03] px-4 py-4 transition-colors duration-200 active:border-amber/40 active:bg-white/[0.06] sm:py-3.5 md:hover:-translate-y-0.5 md:hover:border-amber/35 md:hover:bg-white/[0.05]"
                     >
                       <span className="font-mono text-[9px] uppercase tracking-[0.25em] text-neutral-600 transition-colors group-hover:text-amber/70">
                         {String(i + 1).padStart(2, "0")}
@@ -208,7 +207,7 @@ export default function About() {
                     href={profile.website}
                     target="_blank"
                     rel="noreferrer noopener"
-                    className="text-amber/90 transition-colors hover:text-amber"
+                    className="inline-flex min-h-[44px] items-center justify-center text-amber/90 transition-colors hover:text-amber sm:min-h-0 sm:inline"
                   >
                     {profile.website.replace(/^https?:\/\//, "")}
                   </a>

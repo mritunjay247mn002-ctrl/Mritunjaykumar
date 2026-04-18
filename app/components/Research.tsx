@@ -21,7 +21,7 @@ export default function Research() {
   const sorted = [...research].sort((a, b) => b.year - a.year);
 
   return (
-    <section id="research" className="relative py-20 md:py-28">
+    <section id="research" className="relative py-14 md:py-28">
       <div className="container-rail">
         <SectionHeading
           eyebrow="Research"
@@ -29,7 +29,7 @@ export default function Research() {
           lede="Core focus: underground pillar design and rock mechanics. Adjacent work on AI-driven mining systems and sustainability."
         />
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {sorted.map((item, i) => (
             <motion.article
               key={item.title}
@@ -37,7 +37,7 @@ export default function Research() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.4, delay: (i % 6) * 0.04, ease: "easeOut" }}
-              className="card flex flex-col p-5"
+              className="card flex flex-col p-4 md:p-5"
             >
               <div className="flex items-center justify-between gap-2">
                 <span
@@ -52,7 +52,7 @@ export default function Research() {
                 {item.title}
               </h3>
 
-              <p className="mt-3 text-sm leading-relaxed text-neutral-400">
+              <p className="mt-3 text-sm leading-relaxed text-neutral-400 sm:text-base">
                 {item.description}
               </p>
 

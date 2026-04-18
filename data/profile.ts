@@ -30,8 +30,8 @@ export const profile: Profile = {
   website: "https://miningtoolkit.in",
   location: "National Institute of Technology Karnataka, Surathkal, India",
   about: [
-    "PhD researcher at the National Institute of Technology Karnataka, Surathkal. Core research focus: underground pillar design and rock mechanics.",
-    "Founder of MiningToolkit, an integrated mining engineering suite covering pillar design, blasting, ventilation, geotechnics, economics, and simulations.",
+    "Mritunjay Kumar is a PhD researcher at the National Institute of Technology Karnataka (NIT Karnataka / NITK), Surathkal. Core research focus: underground pillar design and rock mechanics.",
+    "He is the founder of MiningToolkit (miningtoolkit.in), an integrated mining engineering suite covering pillar design, blasting, ventilation, geotechnics, economics, and simulations.",
     "Broader interests: AI-assisted geotechnical modelling, mining instrumentation, and IoT-enabled data platforms.",
   ],
   focus: [

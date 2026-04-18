@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { buildSeoKeywords, seoDescription } from "@/data/seo";
+import { buildSeoKeywords, seoDescription, seoSiteName, seoTitle } from "@/data/seo";
 import { profile } from "@/data/profile";
 import { getSiteUrl } from "@/data/site";
 
@@ -29,9 +29,9 @@ const twitterHandle = process.env.NEXT_PUBLIC_TWITTER_HANDLE?.trim();
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  applicationName: `${profile.name} — Portfolio`,
+  applicationName: seoSiteName,
   title: {
-    default: `${profile.name} · ${profile.title}`,
+    default: seoTitle,
     template: `%s · ${profile.name}`,
   },
   description: seoDescription,
@@ -50,17 +50,17 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: `${profile.name} · ${profile.title}`,
+    title: seoTitle,
     description: seoDescription,
     url: siteUrl,
-    siteName: `${profile.name} — Portfolio`,
+    siteName: seoSiteName,
     locale: "en_IN",
     type: "website",
     countryName: "India",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${profile.name} · ${profile.title}`,
+    title: seoTitle,
     description: seoDescription,
     images: [new URL("/opengraph-image", siteUrl).href],
     ...(twitterHandle

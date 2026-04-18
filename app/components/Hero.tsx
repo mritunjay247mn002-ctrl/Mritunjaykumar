@@ -87,10 +87,16 @@ function HeroBackgroundVideo({
 /** Stronger darkening on the left (where copy sits) + light global veil. */
 function HeroScrim() {
   return (
-    <div
-      aria-hidden
-      className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(to_right,rgba(0,0,0,0.88)_0%,rgba(0,0,0,0.62)_32%,rgba(10,10,10,0.35)_58%,rgba(10,10,10,0.15)_100%)]"
-    />
+    <>
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[1] bg-black/35 md:hidden"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(to_right,rgba(0,0,0,0.88)_0%,rgba(0,0,0,0.62)_32%,rgba(10,10,10,0.35)_58%,rgba(10,10,10,0.15)_100%)]"
+      />
+    </>
   );
 }
 
@@ -98,7 +104,7 @@ function HeroAtmosphere() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-b from-black/25 via-transparent to-black/45"
+      className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-b from-black/35 via-transparent to-black/55 md:from-black/25 md:to-black/45"
     />
   );
 }
@@ -116,7 +122,7 @@ export default function Hero() {
     <section
       ref={sectionRef}
       id="top"
-      className="relative z-0 flex min-h-[82vh] items-center overflow-hidden pb-16 pt-28 md:pt-32"
+      className="relative z-0 flex min-h-[70vh] items-center overflow-hidden pt-24 pb-12 md:min-h-[82vh] md:py-16 md:pt-28 md:pb-16"
     >
       <HeroBackgroundVideo sectionRef={sectionRef} videoRef={videoRef} active={videoActive} />
       <HeroScrim />
@@ -125,12 +131,12 @@ export default function Hero() {
       <div className="relative z-20 w-full">
         <div className="container-rail">
           {/* Solid scrim instead of backdrop-blur — avoids sampling the video every frame */}
-          <div className="max-w-3xl rounded-2xl border border-white/10 bg-black/60 px-5 py-6 shadow-[0_8px_40px_rgba(0,0,0,0.45)] md:px-7 md:py-8">
+          <div className="mx-auto max-w-3xl rounded-2xl border border-white/10 bg-black/80 px-4 py-5 shadow-[0_8px_40px_rgba(0,0,0,0.45)] md:mx-0 md:bg-black/60 md:px-7 md:py-8">
             <motion.div
               initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="flex max-w-3xl flex-col gap-2 font-mono text-[11px] font-semibold uppercase leading-snug tracking-[0.26em] text-white sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3 sm:gap-y-1.5"
+              className="flex max-w-3xl flex-col items-center gap-2 text-center font-mono text-[10px] font-semibold uppercase leading-snug tracking-[0.22em] text-white sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-3 sm:gap-y-1.5 sm:text-[11px] sm:tracking-[0.26em] md:items-start md:justify-start md:text-left md:tracking-[0.26em]"
               style={{ textShadow }}
             >
               <span className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
@@ -138,7 +144,7 @@ export default function Hero() {
                 <span>{profile.title}</span>
                 <span className="hidden h-3 w-px bg-white/25 sm:inline-block" />
               </span>
-              <span className="text-white/95 sm:max-w-[min(100%,36rem)]">
+              <span className="text-white/95 sm:max-w-[min(100%,36rem)] md:text-left">
                 {profile.location}
               </span>
             </motion.div>
@@ -147,7 +153,7 @@ export default function Hero() {
               initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, ease: "easeOut" }}
-              className="mt-5 font-display text-4xl font-bold leading-[1.05] tracking-tight text-white md:mt-6 md:text-6xl"
+              className="mt-5 w-full text-center font-display text-3xl font-bold leading-[1.05] tracking-tight text-white sm:text-4xl md:mt-6 md:text-left md:text-5xl lg:text-6xl"
               style={{ textShadow }}
             >
               {profile.name}
@@ -158,7 +164,7 @@ export default function Hero() {
               initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, ease: "easeOut" }}
-              className="mt-5 max-w-2xl font-display text-lg font-semibold leading-snug text-white md:text-2xl"
+              className="mt-5 w-full max-w-2xl text-center font-display text-base font-semibold leading-snug text-white sm:text-lg md:text-left md:text-2xl"
               style={{ textShadow }}
             >
               {profile.tagline}
@@ -168,7 +174,7 @@ export default function Hero() {
               initial={false}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4, ease: "easeOut" }}
-              className="mt-4 font-mono text-[11px] font-semibold uppercase tracking-[0.28em] text-neutral-100 md:text-xs"
+              className="mt-4 w-full text-center font-mono text-[10px] font-semibold uppercase tracking-[0.24em] text-neutral-100 sm:text-[11px] sm:tracking-[0.28em] md:text-left md:text-xs"
               style={{ textShadow }}
             >
               {profile.subtext}
@@ -178,11 +184,11 @@ export default function Hero() {
               initial={false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, ease: "easeOut" }}
-              className="mt-8 flex flex-wrap gap-3 md:mt-10"
+              className="mt-8 flex w-full flex-wrap justify-center gap-3 md:mt-10 md:justify-start"
             >
               <Link
                 href="/research"
-                className="inline-flex items-center gap-2 rounded-full bg-amber px-5 py-2.5 text-sm font-bold text-ink shadow-lg transition-colors hover:bg-amber/90"
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full bg-amber px-4 py-3 text-sm font-bold text-ink shadow-lg transition-colors active:bg-amber/85 hover:bg-amber/90 md:px-5 md:py-2.5"
               >
                 View research
                 <svg
@@ -197,7 +203,7 @@ export default function Hero() {
               </Link>
               <Link
                 href="/projects"
-                className="inline-flex items-center gap-2 rounded-full border-2 border-white/30 bg-black/70 px-5 py-2.5 text-sm font-bold text-white shadow-lg transition-colors hover:border-amber/60 hover:bg-black/80 hover:text-amber"
+                className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border-2 border-white/30 bg-black/70 px-4 py-3 text-sm font-bold text-white shadow-lg transition-colors active:bg-black/90 hover:border-amber/60 hover:bg-black/80 hover:text-amber md:px-5 md:py-2.5"
               >
                 View projects
               </Link>

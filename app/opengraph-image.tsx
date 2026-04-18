@@ -1,9 +1,10 @@
 import { ImageResponse } from "next/og";
 import { profile } from "@/data/profile";
+import { seoTitle } from "@/data/seo";
 
 export const runtime = "edge";
 
-export const alt = `${profile.name} — ${profile.title}`;
+export const alt = seoTitle;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -46,8 +47,19 @@ export default function OpenGraphImage() {
         </div>
         <div
           style={{
-            marginTop: 28,
-            fontSize: 30,
+            marginTop: 20,
+            fontSize: 22,
+            fontWeight: 500,
+            color: "#c4a035",
+            letterSpacing: "0.06em",
+          }}
+        >
+          NIT Karnataka Surathkal · MiningToolkit
+        </div>
+        <div
+          style={{
+            marginTop: 22,
+            fontSize: 28,
             fontWeight: 400,
             color: "#a3a3a3",
             maxWidth: 920,
@@ -58,10 +70,10 @@ export default function OpenGraphImage() {
         </div>
         <div
           style={{
-            marginTop: 40,
-            fontSize: 18,
+            marginTop: 32,
+            fontSize: 16,
             color: "#737373",
-            letterSpacing: "0.2em",
+            letterSpacing: "0.18em",
             textTransform: "uppercase",
           }}
         >

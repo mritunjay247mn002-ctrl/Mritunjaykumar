@@ -8,7 +8,10 @@ export default function EducationTimeline() {
   const total = education.length;
 
   return (
-    <section id="journey" className="relative border-y border-neutral-800 bg-ink py-20 md:py-28">
+    <section
+      id="journey"
+      className="relative border-y border-neutral-800 bg-ink py-14 md:py-28"
+    >
       <div className="container-rail">
         <SectionHeading
           eyebrow="Education"
@@ -42,9 +45,9 @@ export default function EducationTimeline() {
                         : ""
                     }`}
                   >
-                    <div className="relative z-[1] flex h-8 w-full flex-col items-center justify-end">
+                    <div className="relative z-[1] flex h-7 w-full flex-col items-center justify-end md:h-8">
                       <span
-                        className={`h-2.5 w-2.5 shrink-0 rounded-full ring-4 ring-ink ${
+                        className={`h-2 w-2 shrink-0 rounded-full ring-[3px] ring-ink md:h-2.5 md:w-2.5 md:ring-4 ${
                           isLast ? "bg-amber" : "bg-neutral-600"
                         }`}
                       />
@@ -62,7 +65,7 @@ export default function EducationTimeline() {
                       {item.phase}
                     </span>
 
-                    <h3 className="mt-4 font-display text-base font-semibold leading-snug tracking-tight text-white md:text-[17px]">
+                    <h3 className="mt-4 font-display text-sm font-semibold leading-snug tracking-tight text-white sm:text-base md:text-[17px]">
                       {item.institute}
                     </h3>
 

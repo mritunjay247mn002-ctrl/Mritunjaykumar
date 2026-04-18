@@ -6,14 +6,14 @@ import { projects } from "@/data/projects";
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative py-20 md:py-28">
+    <section id="projects" className="relative py-14 md:py-28">
       <div className="container-rail">
         <SectionHeading
           eyebrow="Projects"
           title="Shipped and in-progress tools."
         />
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((p, i) => {
             const isLive = p.link.startsWith("http");
             return (
@@ -23,7 +23,7 @@ export default function Projects() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.4, delay: i * 0.05, ease: "easeOut" }}
-                className="card flex flex-col p-6"
+                className="card flex flex-col p-4 md:p-6"
               >
                 <div className="flex items-start justify-between gap-4">
                   <h3 className="font-display text-xl font-semibold text-white">
@@ -55,7 +55,7 @@ export default function Projects() {
                       href={p.link}
                       target="_blank"
                       rel="noreferrer noopener"
-                      className="inline-flex items-center gap-1.5 rounded-full bg-amber px-3 py-1.5 text-xs font-medium text-ink transition-colors hover:bg-amber/90"
+                      className="inline-flex min-h-[44px] items-center gap-1.5 rounded-full bg-amber px-4 py-3 text-xs font-medium text-ink transition-colors active:bg-amber/85 hover:bg-amber/90 md:min-h-0 md:px-3 md:py-1.5"
                     >
                       {p.linkLabel}
                       <svg

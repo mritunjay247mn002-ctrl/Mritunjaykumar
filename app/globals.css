@@ -54,7 +54,7 @@ body {
 
 @layer components {
   .container-rail {
-    @apply mx-auto w-full max-w-6xl px-5 md:px-8;
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-5 md:px-8;
   }
 
   .section-eyebrow {
@@ -67,27 +67,29 @@ body {
   }
 
   .heading-xl {
-    @apply font-display text-4xl font-semibold leading-[1.05] tracking-tight text-white md:text-6xl;
+    @apply font-display text-3xl font-semibold leading-[1.05] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl;
   }
 
   .heading-lg {
-    @apply font-display text-3xl font-semibold leading-tight tracking-tight text-white md:text-4xl;
+    @apply font-display text-2xl font-semibold leading-tight tracking-tight text-white sm:text-3xl md:text-4xl;
   }
 
   .heading-md {
-    @apply font-display text-2xl font-semibold leading-tight tracking-tight text-white md:text-3xl;
+    @apply font-display text-xl font-semibold leading-tight tracking-tight text-white sm:text-2xl md:text-3xl;
   }
 
   .prose-dim {
-    @apply text-base leading-relaxed text-neutral-300;
+    @apply text-base leading-relaxed text-neutral-300 sm:text-lg;
   }
 
   .card {
     @apply rounded-xl border border-white/5 bg-white/[0.02] transition-colors duration-200;
   }
 
-  .card:hover {
-    @apply border-amber/30;
+  @media (hover: hover) and (pointer: fine) {
+    .card:hover {
+      @apply border-amber/30;
+    }
   }
 
   /* Field & Consultancy: SVG engineering diagrams (hover-only, no glow) */
@@ -110,8 +112,10 @@ body {
     transition: transform 0.45s ease-out;
   }
 
-  .group:hover .consultancy-underwater-scale {
-    transform: scale(1.05);
+  @media (hover: hover) and (pointer: fine) {
+    .group:hover .consultancy-underwater-scale {
+      transform: scale(1.05);
+    }
   }
 
   .consultancy-pillar-core {
@@ -120,8 +124,10 @@ body {
     transition: transform 0.35s ease-out;
   }
 
-  .group:hover .consultancy-pillar-core {
-    transform: scaleY(0.9);
+  @media (hover: hover) and (pointer: fine) {
+    .group:hover .consultancy-pillar-core {
+      transform: scaleY(0.9);
+    }
   }
 }
 

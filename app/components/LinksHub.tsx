@@ -12,11 +12,11 @@ const cards = [
 
 export default function LinksHub() {
   return (
-    <section id="connect" className="relative py-20 md:py-28">
+    <section id="connect" className="relative py-14 md:py-28">
       <div className="container-rail">
         <SectionHeading eyebrow="Connect" title="Contact and links." align="center" />
 
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
           {cards.map((c, i) => (
             <motion.a
               key={c.label}
@@ -27,7 +27,7 @@ export default function LinksHub() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.4, delay: i * 0.05, ease: "easeOut" }}
-              className="card group p-6"
+              className="card group flex min-h-[100px] flex-col justify-between p-4 md:min-h-0 md:p-6"
             >
               <div className="flex items-center justify-between">
                 <h3 className="font-display text-lg font-semibold text-white transition-colors group-hover:text-amber">
@@ -63,7 +63,7 @@ export default function LinksHub() {
           </span>
           <a
             href={`mailto:${profile.email}`}
-            className="font-mono text-sm text-amber transition-colors hover:text-amber/80"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-md px-3 font-mono text-sm text-amber transition-colors active:text-amber/90 hover:text-amber/80"
           >
             {profile.email}
           </a>

@@ -16,14 +16,20 @@ export default function SectionHeading({ eyebrow, title, lede, align = "left" }:
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.4 }}
       transition={{ duration: 0.45, ease: "easeOut" }}
-      className={`mb-10 md:mb-14 ${align === "center" ? "text-center" : ""}`}
+      className={`mb-8 md:mb-14 ${align === "center" ? "text-center" : ""}`}
     >
       <div className={`section-eyebrow ${align === "center" ? "justify-center" : ""}`}>
         {eyebrow}
       </div>
-      <h2 className="heading-lg mt-4 max-w-3xl">{title}</h2>
+      <h2
+        className={`heading-lg mt-3 max-w-3xl md:mt-4 ${align === "center" ? "mx-auto" : ""}`}
+      >
+        {title}
+      </h2>
       {lede && (
-        <p className={`mt-3 max-w-2xl text-neutral-400 ${align === "center" ? "mx-auto" : ""}`}>
+        <p
+          className={`mt-2 max-w-2xl text-sm leading-relaxed text-neutral-400 sm:text-base md:mt-3 ${align === "center" ? "mx-auto" : ""}`}
+        >
           {lede}
         </p>
       )}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { profile } from "@/data/profile";
-import { buildSeoKeywords, seoDescription } from "@/data/seo";
+import { buildSeoKeywords, seoDescription, seoTitle } from "@/data/seo";
 import { getSiteUrl } from "@/data/site";
 
 /** Paths that should appear in sitemap.xml and be crawlable as real URLs. */
@@ -21,38 +21,50 @@ export type IndexablePath = (typeof INDEXABLE_PATHS)[number];
 export const SECTION_COPY = {
   about: {
     title: "About",
-    description: `${profile.name} — background, research focus (pillar design, rock mechanics), and MiningToolkit. ${profile.tagline}`,
-    keywords: ["About", "MiningToolkit", "NIT Karnataka", "pillar design", "rock mechanics"],
+    description: `${profile.name} — PhD scholar at National Institute of Technology Karnataka (NITK) Surathkal; pillar design & rock mechanics. Founder of MiningToolkit (miningtoolkit.in). ${profile.tagline}`,
+    keywords: [
+      "About Mritunjay Kumar",
+      "MiningToolkit founder",
+      "NIT Karnataka researcher",
+      "pillar design",
+      "rock mechanics",
+    ],
   },
   journey: {
     title: "Journey",
-    description: `Education and teaching timeline for ${profile.name}: M.Tech, PhD at NIT Karnataka Surathkal, and prior academic roles.`,
-    keywords: ["Education", "PhD", "NITK", "timeline", "academic journey"],
+    description: `${profile.name} education path: B.E. Mining (BIT Sindri), M.Tech, faculty at Jharkhand Rai University & RKDF University, and PhD at NIT Karnataka Surathkal — full timeline.`,
+    keywords: [
+      "Mritunjay Kumar education",
+      "NIT Karnataka PhD",
+      "BIT Sindri mining",
+      "M.Tech mining",
+      "academic timeline",
+    ],
   },
   research: {
     title: "Research",
-    description: `Publications and research themes for ${profile.name}: AI in mining, rock mechanics, sustainability, and digital mining systems.`,
-    keywords: ["Publications", "research papers", "AI mining", "IoT mining"],
+    description: `Research and publications by ${profile.name} (NIT Karnataka): AI in mining, rock mechanics, sustainability, IoT & digital mining — linked to MiningToolkit product work.`,
+    keywords: ["Mritunjay Kumar publications", "NITK mining research", "AI mining", "IoT mining"],
   },
   field: {
     title: "Field & consultancy",
-    description: `Consultancy experience for ${profile.name}: blasting, underground mining, slope stability, and rock mechanics across India.`,
-    keywords: ["Consultancy", "blasting", "slope stability", "Vedanta", "field experience"],
+    description: `Field and consultancy work by ${profile.name} across India: blasting, underground mining, slope stability, and rock mechanics — complementing NITK research and MiningToolkit.`,
+    keywords: ["Mritunjay Kumar consultancy", "blasting engineer India", "slope stability", "rock mechanics"],
   },
   projects: {
     title: "Projects",
-    description: `Software and research projects by ${profile.name}, including MiningToolkit and mining engineering tooling.`,
-    keywords: ["Projects", "MiningToolkit", "Next.js", "mining software"],
+    description: `Projects by ${profile.name}: MiningToolkit (miningtoolkit.in), mining software, and research tooling — built alongside PhD work at NIT Karnataka Surathkal.`,
+    keywords: ["MiningToolkit", "Mritunjay Kumar projects", "mining software", "NIT Karnataka"],
   },
   skills: {
     title: "Skills",
-    description: `Technical and domain skills: mining engineering, software (TypeScript, Next.js, Python), and AI / data for ${profile.name}.`,
-    keywords: ["Skills", "TypeScript", "Python", "mining engineering"],
+    description: `Skills of ${profile.name}: mining engineering (pillar, rock mechanics), TypeScript, Next.js, Python, AI / data — applied at NITK and in MiningToolkit development.`,
+    keywords: ["Mritunjay Kumar skills", "mining engineering software", "Python mining", "Next.js"],
   },
   connect: {
     title: "Connect",
-    description: `Contact ${profile.name}: email, LinkedIn, GitHub, and MiningToolkit links.`,
-    keywords: ["Contact", "LinkedIn", "email", "MiningToolkit"],
+    description: `Contact ${profile.name}: email, LinkedIn, GitHub, and MiningToolkit (miningtoolkit.in) — NIT Karnataka Surathkal.`,
+    keywords: ["Contact Mritunjay Kumar", "MiningToolkit", "LinkedIn", "NIT Karnataka"],
   },
 } as const;
 
@@ -64,7 +76,7 @@ function mergeKeywords(extra: string[]): string[] {
     if (t.length < 2 || seen.has(t.toLowerCase())) continue;
     seen.add(t.toLowerCase());
     out.push(t);
-    if (out.length >= 36) break;
+    if (out.length >= 50) break;
   }
   return out;
 }
@@ -134,6 +146,6 @@ export const sectionMeta = {
 } as const;
 
 export const HOME_WEBPAGE = {
-  name: `${profile.name} · ${profile.title}`,
+  name: seoTitle,
   description: seoDescription,
 } as const;

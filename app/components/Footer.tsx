@@ -12,7 +12,7 @@ export default function Footer() {
             href={profile.website}
             target="_blank"
             rel="noreferrer noopener"
-            className="transition-colors hover:text-amber"
+            className="inline-flex min-h-[44px] items-center py-2 transition-colors active:text-amber/90 hover:text-amber md:min-h-0 md:py-0"
           >
             miningtoolkit.in
           </a>
@@ -20,13 +20,13 @@ export default function Footer() {
             href={profile.linkedin}
             target="_blank"
             rel="noreferrer noopener"
-            className="transition-colors hover:text-amber"
+            className="inline-flex min-h-[44px] items-center py-2 transition-colors active:text-amber/90 hover:text-amber md:min-h-0 md:py-0"
           >
             linkedin
           </a>
           <a
             href={`mailto:${profile.email}`}
-            className="transition-colors hover:text-amber"
+            className="inline-flex min-h-[44px] items-center py-2 transition-colors active:text-amber/90 hover:text-amber md:min-h-0 md:py-0"
           >
             email
           </a>

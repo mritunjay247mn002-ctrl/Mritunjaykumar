@@ -109,8 +109,8 @@ export default function Navbar() {
                 <li key={l.path}>
                   <Link
                     href={l.path}
-                    className={`relative px-3 py-2 text-sm transition-colors ${
-                      activeNav ? "text-amber" : "text-neutral-400 hover:text-white"
+                    className={`relative inline-flex min-h-[44px] items-center px-3 py-2 text-sm transition-colors md:min-h-0 ${
+                      activeNav ? "text-amber" : "text-neutral-400 md:hover:text-white"
                     }`}
                   >
                     {l.label}
@@ -129,7 +129,7 @@ export default function Navbar() {
 
           <a
             href={`mailto:${profile.email}`}
-            className="hidden rounded-full border border-amber/40 bg-amber/10 px-4 py-1.5 font-mono text-[11px] uppercase tracking-widest text-amber transition-all hover:bg-amber hover:text-ink hover:shadow-glow-amber md:inline-block"
+            className="hidden min-h-[44px] items-center rounded-full border border-amber/40 bg-amber/10 px-4 py-3 font-mono text-[11px] uppercase tracking-widest text-amber transition-all hover:bg-amber hover:text-ink hover:shadow-glow-amber md:inline-flex md:min-h-0 md:py-1.5"
           >
             Say hello
           </a>
@@ -139,7 +139,7 @@ export default function Navbar() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={() => setOpen((v) => !v)}
-            className="relative z-[60] flex h-10 w-10 items-center justify-center rounded-md border border-white/10 bg-ink/80 md:hidden"
+            className="relative z-[60] flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md border border-white/10 bg-ink/80 md:hidden"
           >
             <span className="sr-only">Toggle menu</span>
             <span className="relative flex h-4 w-5 flex-col justify-between">
@@ -217,8 +217,8 @@ export default function Navbar() {
                     <Link
                       href={l.path}
                       onClick={() => setOpen(false)}
-                      className={`group flex items-center justify-between py-5 font-display text-3xl font-semibold tracking-tight transition-colors ${
-                        activeNav ? "text-amber" : "text-white hover:text-amber"
+                      className={`group flex min-h-[52px] items-center justify-between py-4 font-display text-2xl font-semibold tracking-tight transition-colors active:text-amber sm:text-3xl md:min-h-0 md:py-5 ${
+                        activeNav ? "text-amber" : "text-white md:hover:text-amber"
                       }`}
                     >
                       <span className="flex items-baseline gap-4">
