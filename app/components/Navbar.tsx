@@ -1,18 +1,20 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { profile } from "@/data/profile";
 
 const links = [
-  { href: "#about", label: "About", n: "01" },
-  { href: "#journey", label: "Journey", n: "02" },
-  { href: "#research", label: "Research", n: "03" },
-  { href: "#field", label: "Field", n: "04" },
-  { href: "#projects", label: "Projects", n: "05" },
-  { href: "#skills", label: "Skills", n: "06" },
-  { href: "#connect", label: "Connect", n: "07" },
-];
+  { path: "/about", sectionId: "about", label: "About", n: "01" },
+  { path: "/journey", sectionId: "journey", label: "Journey", n: "02" },
+  { path: "/research", sectionId: "research", label: "Research", n: "03" },
+  { path: "/field", sectionId: "field", label: "Field", n: "04" },
+  { path: "/projects", sectionId: "projects", label: "Projects", n: "05" },
+  { path: "/skills", sectionId: "skills", label: "Skills", n: "06" },
+  { path: "/connect", sectionId: "connect", label: "Connect", n: "07" },
+] as const;
 
 const socials = [
   { label: "LinkedIn", href: profile.linkedin },
@@ -21,9 +23,12 @@ const socials = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("");
+
+  const onHome = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -33,8 +38,9 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
+    if (!onHome) return;
     const sections = links
-      .map((l) => document.querySelector(l.href))
+      .map((l) => document.querySelector(`#${l.sectionId}`))
       .filter(Boolean) as Element[];
     if (!sections.length) return;
     const observer = new IntersectionObserver(
@@ -47,9 +53,8 @@ export default function Navbar() {
     );
     sections.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
-  }, []);
+  }, [onHome]);
 
-  // Lock body scroll + close on Escape while mobile menu is open
   useEffect(() => {
     if (open) {
       const prev = document.body.style.overflow;
@@ -65,14 +70,8 @@ export default function Navbar() {
     }
   }, [open]);
 
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const el = document.querySelector(href);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "start" });
-      setOpen(false);
-    }
-  };
+  const isNavActive = (l: (typeof links)[number]) =>
+    pathname === l.path || (onHome && active === `#${l.sectionId}`);
 
   return (
     <>
@@ -86,10 +85,10 @@ export default function Navbar() {
             : "border-b border-transparent bg-transparent"
         }`}
       >
-        <nav className="container-rail flex h-16 items-center justify-between">
-          <a
-            href="#top"
-            onClick={(e) => handleClick(e, "#top")}
+        <nav className="container-rail flex h-16 items-center justify-between" aria-label="Primary">
+          <Link
+            href="/"
+            onClick={() => setOpen(false)}
             className="group flex items-center gap-2.5"
           >
             <span className="relative flex h-7 w-7 items-center justify-center rounded-md border border-amber/40 bg-amber/10">
@@ -101,29 +100,28 @@ export default function Navbar() {
             <span className="font-display text-sm font-semibold tracking-tight text-white">
               Mritunjay<span className="text-amber"> .</span>
             </span>
-          </a>
+          </Link>
 
           <ul className="hidden items-center gap-1 md:flex">
             {links.map((l) => {
-              const isActive = active === l.href;
+              const activeNav = isNavActive(l);
               return (
-                <li key={l.href}>
-                  <a
-                    href={l.href}
-                    onClick={(e) => handleClick(e, l.href)}
+                <li key={l.path}>
+                  <Link
+                    href={l.path}
                     className={`relative px-3 py-2 text-sm transition-colors ${
-                      isActive ? "text-amber" : "text-neutral-400 hover:text-white"
+                      activeNav ? "text-amber" : "text-neutral-400 hover:text-white"
                     }`}
                   >
                     {l.label}
-                    {isActive && (
+                    {activeNav && (
                       <motion.span
                         layoutId="nav-active"
                         className="absolute inset-x-2 -bottom-0.5 h-px bg-amber"
                         transition={{ duration: 0.25, ease: "easeOut" }}
                       />
                     )}
-                  </a>
+                  </Link>
                 </li>
               );
             })}
@@ -206,21 +204,21 @@ export default function Navbar() {
               className="relative flex flex-1 flex-col justify-center px-5"
             >
               {links.map((l) => {
-                const isActive = active === l.href;
+                const activeNav = isNavActive(l);
                 return (
                   <motion.li
-                    key={l.href}
+                    key={l.path}
                     variants={{
                       hidden: { opacity: 0, x: -16 },
                       show: { opacity: 1, x: 0, transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] } },
                     }}
                     className="border-b border-white/5 last:border-0"
                   >
-                    <a
-                      href={l.href}
-                      onClick={(e) => handleClick(e, l.href)}
+                    <Link
+                      href={l.path}
+                      onClick={() => setOpen(false)}
                       className={`group flex items-center justify-between py-5 font-display text-3xl font-semibold tracking-tight transition-colors ${
-                        isActive ? "text-amber" : "text-white hover:text-amber"
+                        activeNav ? "text-amber" : "text-white hover:text-amber"
                       }`}
                     >
                       <span className="flex items-baseline gap-4">
@@ -231,7 +229,7 @@ export default function Navbar() {
                       </span>
                       <svg
                         className={`h-4 w-4 transition-all duration-300 ${
-                          isActive
+                          activeNav
                             ? "text-amber opacity-100"
                             : "-translate-x-2 text-neutral-500 opacity-0 group-hover:translate-x-0 group-hover:text-amber group-hover:opacity-100"
                         }`}
@@ -246,7 +244,7 @@ export default function Navbar() {
                           strokeLinejoin="round"
                         />
                       </svg>
-                    </a>
+                    </Link>
                   </motion.li>
                 );
               })}

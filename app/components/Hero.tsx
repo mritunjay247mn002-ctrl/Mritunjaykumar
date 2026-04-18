@@ -1,31 +1,85 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import { profile } from "@/data/profile";
 
 const HERO_VIDEO_SRC = "/video/video.mp4";
 
-/** Very light blur on video (~2–4px): keeps detail readable, softens noise. */
-function HeroBackgroundVideo() {
+function usePrefersReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => setReduced(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+  return reduced;
+}
+
+/**
+ * Hero video: no CSS blur (blur + full-bleed video is very GPU-heavy).
+ * `preload="metadata"` limits initial download; playback pauses when scrolled away.
+ */
+function HeroBackgroundVideo({
+  sectionRef,
+  videoRef,
+  active,
+}: {
+  sectionRef: RefObject<HTMLElement | null>;
+  videoRef: RefObject<HTMLVideoElement>;
+  active: boolean;
+}) {
+  useEffect(() => {
+    if (!active) return;
+    const root = sectionRef.current;
+    const vid = videoRef.current;
+    if (!root || !vid) return;
+
+    const setPlaying = (playing: boolean) => {
+      if (playing) {
+        void vid.play().catch(() => {});
+      } else {
+        vid.pause();
+      }
+    };
+
+    const obs = new IntersectionObserver(
+      (entries) => {
+        const hit = entries.some((e) => e.isIntersecting && e.intersectionRatio > 0.04);
+        setPlaying(hit);
+      },
+      { threshold: [0, 0.04, 0.15] }
+    );
+    obs.observe(root);
+    return () => obs.disconnect();
+  }, [active, sectionRef, videoRef]);
+
+  if (!active) {
+    return (
+      <div aria-hidden className="pointer-events-none absolute inset-0 z-0 bg-ink" />
+    );
+  }
+
   return (
     <div
       aria-hidden
       className="pointer-events-none absolute inset-0 z-0 overflow-hidden bg-ink"
     >
-      <div className="absolute -inset-[2%]">
-        <video
-          className="h-full w-full scale-[1.02] object-cover blur-[3px] sm:blur-[4px]"
-          autoPlay
-          muted
-          playsInline
-          loop
-          preload="auto"
-          disablePictureInPicture
-          controls={false}
-        >
-          <source src={HERO_VIDEO_SRC} type="video/mp4" />
-        </video>
-      </div>
+      <video
+        ref={videoRef}
+        className="h-full w-full object-cover"
+        muted
+        playsInline
+        loop
+        preload="metadata"
+        disablePictureInPicture
+        controls={false}
+      >
+        <source src={HERO_VIDEO_SRC} type="video/mp4" />
+      </video>
     </div>
   );
 }
@@ -52,24 +106,26 @@ function HeroAtmosphere() {
 const textShadow =
   "0 1px 2px rgba(0,0,0,0.95),0 2px 8px rgba(0,0,0,0.85),0 0 1px rgba(0,0,0,1)";
 
-const scrollTo = (href: string) => (e: React.MouseEvent<HTMLAnchorElement>) => {
-  e.preventDefault();
-  document.querySelector(href)?.scrollIntoView({ behavior: "smooth", block: "start" });
-};
-
 export default function Hero() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null!);
+  const prefersReducedMotion = usePrefersReducedMotion();
+  const videoActive = !prefersReducedMotion;
+
   return (
     <section
+      ref={sectionRef}
       id="top"
       className="relative z-0 flex min-h-[82vh] items-center overflow-hidden pb-16 pt-28 md:pt-32"
     >
-      <HeroBackgroundVideo />
+      <HeroBackgroundVideo sectionRef={sectionRef} videoRef={videoRef} active={videoActive} />
       <HeroScrim />
       <HeroAtmosphere />
 
       <div className="relative z-20 w-full">
         <div className="container-rail">
-          <div className="max-w-3xl rounded-2xl border border-white/10 bg-black/35 px-5 py-6 shadow-[0_8px_40px_rgba(0,0,0,0.45)] backdrop-blur-[6px] md:px-7 md:py-8">
+          {/* Solid scrim instead of backdrop-blur — avoids sampling the video every frame */}
+          <div className="max-w-3xl rounded-2xl border border-white/10 bg-black/60 px-5 py-6 shadow-[0_8px_40px_rgba(0,0,0,0.45)] md:px-7 md:py-8">
             <motion.div
               initial={false}
               animate={{ opacity: 1, y: 0 }}
@@ -124,9 +180,8 @@ export default function Hero() {
               transition={{ duration: 0.45, ease: "easeOut" }}
               className="mt-8 flex flex-wrap gap-3 md:mt-10"
             >
-              <a
-                href="#research"
-                onClick={scrollTo("#research")}
+              <Link
+                href="/research"
                 className="inline-flex items-center gap-2 rounded-full bg-amber px-5 py-2.5 text-sm font-bold text-ink shadow-lg transition-colors hover:bg-amber/90"
               >
                 View research
@@ -139,14 +194,13 @@ export default function Hero() {
                 >
                   <path d="M3 8h10M9 4l4 4-4 4" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-              </a>
-              <a
-                href="#projects"
-                onClick={scrollTo("#projects")}
+              </Link>
+              <Link
+                href="/projects"
                 className="inline-flex items-center gap-2 rounded-full border-2 border-white/30 bg-black/70 px-5 py-2.5 text-sm font-bold text-white shadow-lg transition-colors hover:border-amber/60 hover:bg-black/80 hover:text-amber"
               >
                 View projects
-              </a>
+              </Link>
             </motion.div>
           </div>
         </div>
